@@ -56,3 +56,4 @@ dkms.conf
 ._*
 .nfs.*
 .tmp.c
+snake
