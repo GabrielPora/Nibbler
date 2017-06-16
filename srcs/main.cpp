@@ -1,9 +1,16 @@
 /* Coded By Ratul Thakur; Contact : edratulthakur0@gmail.com; Dated : 25th September 2016 */
 
-#include <GL/glut.h>
 #include <iostream>
 #include <fstream>
-#include "../includes/game.h"
+#include "game.h"
+
+#ifdef __APPLE__
+# include <OpenGL/gl.h>
+# include <GLUT/glut.h>
+#else
+# include <GL/gl.h>
+# include <GL/glut.h>
+#endif
 
 #define ROWS 40.0
 #define COLUMNS 40.0
@@ -26,7 +33,7 @@ int main(int argc,char**argv)
     glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB);
     glutInitWindowPosition(10,10);
     glutInitWindowSize(600,600);
-    glutCreateWindow("SNAKE v1.0 - By Ratul Thakur");
+    glutCreateWindow("NIBBLER v1.0");
     glutDisplayFunc(display_callback);
     glutReshapeFunc(reshape_callback);
     glutSpecialFunc(input_callback);
@@ -56,7 +63,8 @@ void display_callback()
         std::cout<<a;
         char text[50]= "Your score : ";
         strcat(text,a);
-        MessageBox(NULL,text,"Game Over",0);
+        glutCreateWindow("Game Over");
+        //MessageBox(NULL,text,"Game Over",0);
         exit(0);
     }
     glClear(GL_COLOR_BUFFER_BIT);

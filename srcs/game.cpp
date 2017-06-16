@@ -1,7 +1,14 @@
-#include <GL/glut.h>
 #include <iostream>
 #include <ctime>
 #include "../includes/game.h"
+
+#ifdef __APPLE__
+# include <OpenGL/gl.h>
+# include <GLUT/glut.h>
+#else
+# include <GL/gl.h>
+# include <GL/glut.h>
+#endif
 
 void unit(int,int);
 int random(int,int);
@@ -70,7 +77,8 @@ void draw_snake()
                 if(length<=MAX)
                     length_inc=true;
                 if(length==MAX)
-                    MessageBox(NULL,"You Win\nYou can still keep playing but the snake will not grow.","Awsome",0);
+                    glutCreateWindow("You Win\nYou can still keep playing but the snake will not grow.");
+                    //MessageBox(NULL,"You Win\nYou can still keep playing but the snake will not grow.","Awsome",0);
             }
             for(int j=1;j<length;j++)
             {
