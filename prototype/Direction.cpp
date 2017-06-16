@@ -15,7 +15,7 @@
 /*
 ** Constructors and Destructors
 */
-Direction::Direction(): _x(0), _y(0) {
+Direction::Direction(void): _x(0), _y(0) {
 	//
 }
 
@@ -49,15 +49,15 @@ Direction Direction::operator = (const Direction &obj) {
 /*
 ** Getters
 */
-char	Direction::getX() const {
+char	Direction::getX(void) const {
 	return (this->_x);
 }
 
-char	Direction::getY() const {
+char	Direction::getY(void) const {
 	return (this->_y);
 }
 
-char	Direction::getDirection() const {
+char	Direction::getDirection(void) const {
 	if (this->_x == 0 && this->_y == 1)
 		return (NORTH);
 	if (this->_x == 1 && this->_y == 0)
@@ -114,14 +114,14 @@ Coord	Direction::moveCoord(Coord coord) const {
 	Coord	result;
 
 	if (this->_x == RIGHT)
-		coord.incX();
+		coord.incX(void);
 	else if (this->_x == LEFT)
-		coord.decX();
+		coord.decX(void);
 	
 	if (this->_y == UP)
-		coord.incY();
+		coord.incY(void);
 	else if (this->_y == DOWN)
-		coord.decY();
+		coord.decY(void);
 
 	return (result);
 }

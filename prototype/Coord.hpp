@@ -30,9 +30,9 @@ public:
 	Coord operator / (const Coord &obj);
 
 	Coord operator ++ (int);
-	Coord operator ++ ();
+	Coord operator ++ (void);
 	Coord operator -- (int);
-	Coord operator -- ();
+	Coord operator -- (void);
 
 	int		getX(void) const;
 	int		getY(void) const;

@@ -38,9 +38,9 @@ public:
 	Direction(const Direction &obj);
 	Direction operator = (const Direction &obj);
 
-	char	getX() const;
-	char	getY() const;
-	char	getDirection() const;
+	char	getX(void) const;
+	char	getY(void) const;
+	char	getDirection(void) const;
 
 	void	setX(char x);
 	void	setY(char y);

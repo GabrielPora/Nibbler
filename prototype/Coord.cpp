@@ -15,7 +15,7 @@
 /*
 ** Constructors and Destructors
 */
-Coord::Coord(): _x(0), _y(0) {
+Coord::Coord(void): _x(0), _y(0) {
 	//
 }
 
@@ -83,7 +83,7 @@ Coord Coord::operator ++ (int) {
 	return (tmp);
 }
 
-Coord Coord::operator ++ () {
+Coord Coord::operator ++ (void) {
 	this->_x += 1;
 	this->_y += 1;
 
@@ -97,7 +97,7 @@ Coord Coord::operator -- (int) {
 	return (tmp);
 }
 
-Coord Coord::operator -- () {
+Coord Coord::operator -- (void) {
 	this->_x -= 1;
 	this->_y -= 1;
 
