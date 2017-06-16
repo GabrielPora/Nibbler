@@ -44,5 +44,29 @@ GameState::~GameState(void) {
 ** Copying
 */
 GameState::GameState(const GameState &obj) {
-	// this->_sna
+	this->_snake = obj._snake;
+	this->_map = obj._map;
+	this->_food = obj._food;
+	this->_size = obj._size;
 }
+
+GameState GameState::operator = (const GameState &obj) {
+	this->_snake = obj._snake;
+	this->_map = obj._map;
+	this->_food = obj._food;
+	this->_size = obj._size;
+
+	return (*this);
+}
+
+/*
+** Getters
+*/
+
+/*
+** Setters
+*/
+
+/*
+** Functions
+*/
