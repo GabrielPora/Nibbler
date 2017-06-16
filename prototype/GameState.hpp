@@ -39,7 +39,7 @@ public:
 	Coord	getSize(void) const;
 	int		getWidth(void) const;
 	int		getHeight(void) const;
-	char	getSnakeDir(void) const;
+	Direction	getSnakeDir(void) const;
 
 	void	setSize(Coord size);
 	void	setWidth(int width);

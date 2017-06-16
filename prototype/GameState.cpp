@@ -64,32 +64,46 @@ GameState GameState::operator = (const GameState &obj) {
 */
 
 MAP		GameState::getMap(void) const {
-	//
+	return (this->_map);
 }
 
 Snake	GameState::getSnake(void) const {
-	//
+	return (this->_snake);
 }
 
 Coord	GameState::getSize(void) const {
-	//
+	return (this->_size)
 }
 
 int		GameState::getWidth(void) const {
-	//
+	return (this->_size.getX());
 }
 
 int		GameState::getHeight(void) const {
-	//
+	return (this->_size.getY());
 }
 
-char	GameState::getSnakeDir(void) const {
-	//
+Direction	GameState::getSnakeDir(void) const {
+	return (this->_snake.getDirection());
 }
 
 /*
 ** Setters
 */
+void	GameState::setSize(Coord size) {
+	this->_size = size;
+}
+
+void	GameState::setWidth(int width) {
+	this->_size.setX(width);
+}
+
+void	GameState::setHeight(int height) {
+	this->_size.setY(height);
+}
+void	GameState::setSnakeDir(char direction) {
+	this->_snake.setDirection(direction);
+}
 
 /*
 ** Functions
