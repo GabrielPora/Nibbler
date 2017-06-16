@@ -114,14 +114,14 @@ Coord	Direction::moveCoord(Coord coord) const {
 	Coord	result;
 
 	if (this->_x == RIGHT)
-		coord.incX(void);
+		coord.incX();
 	else if (this->_x == LEFT)
-		coord.decX(void);
+		coord.decX();
 	
 	if (this->_y == UP)
-		coord.incY(void);
+		coord.incY();
 	else if (this->_y == DOWN)
-		coord.decY(void);
+		coord.decY();
 
 	return (result);
 }
