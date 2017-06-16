@@ -14,7 +14,7 @@
 # define SNAKE_HPP
 
 # include <iostream>
-#include <list>
+# include <list>
 
 # include "Coord.hpp"
 # include "Direction.hpp"
