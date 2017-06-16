@@ -145,6 +145,9 @@ void	Coord::decY(void) {
 	this->_y--;
 }
 
+/*
+** Display
+*/
 std::ostream& operator << (std::ostream &o, const Coord &coord) {
 	o << "( " << coord.getX() << "; " << coord.getY() << ")";
 
