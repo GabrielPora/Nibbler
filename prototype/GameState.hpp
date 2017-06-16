@@ -39,10 +39,12 @@ public:
 	Coord	getSize(void) const;
 	int		getWidth(void) const;
 	int		getHeight(void) const;
+	char	getSnakeDir(void) const;
 
 	void	setSize(Coord size);
 	void	setWidth(int width);
 	void	setHeight(int height);
+	void	setSnakeDir(char direction);
 
 	void	resetMap(void);
 	void	resetSnake(void);
@@ -54,8 +56,7 @@ private:
 	MAP		_map;
 	Coord	_food;
 
-	int		_width;
-	int		_height;
+	Coord	_size;
 
 };
 

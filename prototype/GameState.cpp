@@ -16,7 +16,33 @@
 ** Constructors and Destructors
 */
 GameState::GameState(void) {
-	_height = DEFAULT_HEIGHT;
-	_width = DEFAULT_WIDTH;
+	_size = Coord(DEFAULT_HEIGHT, DEFAULT_WIDTH);
+	_snake = Snake();
 	resetMap();
+	generateFood();
+}
+
+GameState::GameState(Coord size) {
+	_size = size;
+	_snake = Snake();
+	resetMap();
+	generateFood();
+}
+
+GameState::GameState(int width, int height) {
+	_size = Coord(width, height);
+	_snake = Snake();
+	resetMap();
+	generateFood();
+}
+
+GameState::~GameState(void) {
+	_map.clear();
+}
+
+/*
+** Copying
+*/
+GameState::GameState(const GameState &obj) {
+	// this->_sna
 }
