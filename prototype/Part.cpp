@@ -15,7 +15,7 @@
 /*
 ** Constructors and Destructors
 */
-Part::Part(): _pos(), _eaten(false) {
+Part::Part(void): _pos(), _eaten(false) {
 	//
 }
 
