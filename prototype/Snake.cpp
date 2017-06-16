@@ -100,3 +100,11 @@ void				Snake::moveSnake(void) {
 void				Snake::eat(void) {
 	this->_body.front().setEaten(true);
 }
+
+Coord				Snake::getHeadPos(void) const {
+	return (this->_body.front().getPos());
+}
+
+Coord				Snake::getTailPos(void) const {
+	return (this->_body.back().getPos());
+}

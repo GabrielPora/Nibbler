@@ -33,6 +33,8 @@ public:
 
 	std::list<Part>		getBody(void) const;
 	Direction			getDirection(void) const;
+	Coord				getHeadPos(void) const;
+	Coord				getTailPos(void) const;
 
 	void				setDirection(Direction dir);
 	void				setDirection(char dir);
