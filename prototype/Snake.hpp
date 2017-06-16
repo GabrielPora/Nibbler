@@ -20,6 +20,8 @@
 # include "Direction.hpp"
 # include "Part.hpp"
 
+# define DEFAULT_SNAKE_LENGTH 4
+
 class Snake {
 public:
 	Snake(void);
@@ -29,17 +31,18 @@ public:
 	Snake(const Snake &obj);
 	Snake operator = (const Snake &obj);
 
-	std::list<Part>		getBody(void);
-	Direction			getDirection(void);
+	std::list<Part>		getBody(void) const;
+	Direction			getDirection(void) const;
 
 	void				setDirection(Direction dir);
 	void				setDirection(char dir);
 	
-	bool				moveSnake(void);
+	void				moveSnake(void);
+	void				eat(void);
 
 private:
-	std::list<Part>		body;
-	Direction			direction;
+	std::list<Part>		_body;
+	Direction			_direction;
 
 };
 
