@@ -63,6 +63,30 @@ GameState GameState::operator = (const GameState &obj) {
 ** Getters
 */
 
+MAP		GameState::getMap(void) const {
+	//
+}
+
+Snake	GameState::getSnake(void) const {
+	//
+}
+
+Coord	GameState::getSize(void) const {
+	//
+}
+
+int		GameState::getWidth(void) const {
+	//
+}
+
+int		GameState::getHeight(void) const {
+	//
+}
+
+char	GameState::getSnakeDir(void) const {
+	//
+}
+
 /*
 ** Setters
 */
