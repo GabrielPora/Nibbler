@@ -79,7 +79,7 @@ void	Part::setEaten(bool eaten) {
 ** Display
 */
 std::ostream& operator << (std::ostream &o, const Part &part) {
-	o << "{PART: [eaten: " << part.getEaten()  << "; " << part.getPos() << "]}";
+	o << "{PART: [eaten: " << part.getEaten()  << "; Pos: " << part.getPos() << "]}";
 
 	return (o);
 }
