@@ -107,11 +107,11 @@ Coord Coord::operator -- () {
 /*
 ** Getters
 */
-int		Coord::getX(void) {
+int		Coord::getX(void) const {
 	return (this->_x);
 }
 
-int		Coord::getY(void) {
+int		Coord::getY(void) const {
 	return (this->_y);
 }
 
@@ -143,4 +143,10 @@ void	Coord::decX(void) {
 
 void	Coord::decY(void) {
 	this->_y--;
+}
+
+std::ostream& operator << (std::ostream &o, const Coord &coord) {
+	o << "( " << coord.getX() << "; " << coord.getY() << ")";
+
+	return (o);
 }

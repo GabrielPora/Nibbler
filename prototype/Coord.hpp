@@ -13,8 +13,9 @@
 #ifndef COORD_HPP
 # define COORD_HPP
 
-class Coord
-{
+#include <iostream>
+
+class Coord {
 public:
 	Coord(void);
 	Coord(int x, int y);
@@ -33,8 +34,8 @@ public:
 	Coord operator -- (int);
 	Coord operator -- ();
 
-	int		getX(void);
-	int		getY(void);
+	int		getX(void) const;
+	int		getY(void) const;
 
 	void	setX(int x);
 	void	setY(int y);
@@ -48,5 +49,7 @@ private:
 	int		_x;
 	int		_y;
 };
+
+std::ostream& operator << (std::ostream &o, const Coord &coord);
 
 #endif
