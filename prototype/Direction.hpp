@@ -15,6 +15,8 @@
 
 # include <iostream>
 
+# include "Coord.hpp" 
+
 # define LOST   0
 # define NORTH 	1
 # define EAST  	2
@@ -43,6 +45,8 @@ public:
 	void	setX(char x);
 	void	setY(char y);
 	void	setDirection(char direction);
+
+	Coord	moveCoord(Coord coord) const;
 
 private:
 	char	_x;

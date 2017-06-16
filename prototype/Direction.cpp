@@ -106,3 +106,22 @@ void	Direction::setDirection(char direction) {
 			_y = 0;
 	}
 }
+
+/*
+** Functions
+*/
+Coord	Direction::moveCoord(Coord coord) const {
+	Coord	result;
+
+	if (this->_x == RIGHT)
+		coord.incX();
+	else if (this->_x == LEFT)
+		coord.decX();
+	
+	if (this->_y == UP)
+		coord.incY();
+	else if (this->_y == DOWN)
+		coord.decY();
+
+	return (result);
+}
