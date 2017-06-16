@@ -1,6 +1,13 @@
 /* Coded By Ratul Thakur; Contact : edratulthakur0@gmail.com; Dated : 25th September 2016 */
 
-#include <GL/glut.h>
+#ifdef __APPLE__
+# include <OpenGL/gl.h>
+# include <GLUT/glut.h>
+#else
+# include <GL/gl.h>
+# include <GL/glut.h>
+#endif
+
 #include <iostream>
 #include <fstream>
 #include "game.h"
