@@ -14,7 +14,7 @@
 # define PART_HPP
 
 # include <iostream>
-#include "Coord.hpp"
+# include "Coord.hpp"
 
 class Part {
 public:
