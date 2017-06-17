@@ -26,6 +26,8 @@ Snake::Snake(void) {
 }
 
 Snake::Snake(Coord head, Direction tail) {
+	_direction = tail.opposite();
+
 	for (int k = 0; k < DEFAULT_SNAKE_LENGTH; k++) {
 		_body.push_back(head);
 		head = tail.moveCoord(head);
@@ -107,4 +109,12 @@ Coord				Snake::getHeadPos(void) const {
 
 Coord				Snake::getTailPos(void) const {
 	return (this->_body.back().getPos());
+}
+
+void				Snake::resetSnake(void) {
+	*this = Snake();
+}
+
+void				Snake::resetSnake(Coord head, Direction tail) {
+	*this = Snake(head, tail);
 }

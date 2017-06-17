@@ -125,3 +125,16 @@ Coord	Direction::moveCoord(Coord coord) const {
 
 	return (result);
 }
+
+Direction	Direction::opposite(void) const {
+	if (this->_x == 0 && this->_y == 1)
+		return (Direction(SOUTH));
+	if (this->_x == 1 && this->_y == 0)
+		return (Direction(WEST));
+	if (this->_x == 0 && this->_y == -1)
+		return (Direction(NORTH));
+	if (this->_x == -1 && this->_y == 0)
+		return (Direction(EAST));
+	
+	return (Direction(LOST));
+}

@@ -38,15 +38,16 @@ public:
 	Direction(const Direction &obj);
 	Direction operator = (const Direction &obj);
 
-	char	getX(void) const;
-	char	getY(void) const;
-	char	getDirection(void) const;
+	char		getX(void) const;
+	char		getY(void) const;
+	char		getDirection(void) const;
 
-	void	setX(char x);
-	void	setY(char y);
-	void	setDirection(char direction);
+	void		setX(char x);
+	void		setY(char y);
+	void		setDirection(char direction);
 
-	Coord	moveCoord(Coord coord) const;
+	Coord		moveCoord(Coord coord) const;
+	Direction	opposite(void) const;
 
 private:
 	char	_x;

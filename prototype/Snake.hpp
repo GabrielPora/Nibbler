@@ -38,6 +38,8 @@ public:
 
 	void				setDirection(Direction dir);
 	void				setDirection(char dir);
+	void				resetSnake(void);
+	void				resetSnake(Coord head, Direction tail);
 	
 	void				moveSnake(void);
 	void				eat(void);
