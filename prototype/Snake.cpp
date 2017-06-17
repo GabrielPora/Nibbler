@@ -112,9 +112,11 @@ Coord				Snake::getTailPos(void) const {
 }
 
 void				Snake::resetSnake(void) {
+	this->_body.clear();
 	*this = Snake();
 }
 
 void				Snake::resetSnake(Coord head, Direction tail) {
+	this->_body.clear();
 	*this = Snake(head, tail);
 }
