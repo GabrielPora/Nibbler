@@ -15,7 +15,7 @@
 
 # include <iostream>
 
-# include "Coord.hpp" 
+# include "Coord.hpp"
 
 # define LOST   0
 # define NORTH 	1
