@@ -15,6 +15,7 @@
 
 # include <iostream>
 # include <map>
+# include <time.h>
 
 # include "Coord.hpp"
 # include "Snake.hpp"
@@ -28,7 +29,11 @@
 # define MAP_BODY		3
 # define MAP_FOOD		4
 
-# define MAP std::map<int, std::map<int, int> >
+# define MODE_PAUSE		0
+# define MODE_PLAY		1
+# define MODE_END		2
+
+# define MAP std::map<int, std::map<int, char> >
 
 class GameState {
 public:
@@ -52,15 +57,21 @@ public:
 	void		setHeight(int height);
 	void		setSnakeDir(char direction);
 
-	void		resetMap(void);
-	void		resetSnake(void);
-	void		runIteration(void);
-	void		generateFood(void);
+	bool		runIteration(void);
+	void		resetGame(void);
 
 private:
+	void		resetMap(void);
+	void		resetSnake(void);
+	void		generateFood(void);
+	void		loadSnake(void);
+	void		loadFood(void);
+	void		moveSnake(void);
+
 	Snake		_snake;
 	MAP			_map;
 	Coord		_food;
+	char		_mode;
 
 	Coord		_size;
 

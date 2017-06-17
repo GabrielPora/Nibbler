@@ -18,6 +18,8 @@
 GameState::GameState(void) {
 	_size = Coord(DEFAULT_HEIGHT, DEFAULT_WIDTH);
 	_snake = Snake();
+	_mode = MODE_PLAY;
+
 	resetMap();
 	generateFood();
 }
@@ -25,6 +27,8 @@ GameState::GameState(void) {
 GameState::GameState(Coord size) {
 	_size = size;
 	_snake = Snake();
+	_mode = MODE_PLAY;
+
 	resetMap();
 	generateFood();
 }
@@ -32,6 +36,8 @@ GameState::GameState(Coord size) {
 GameState::GameState(int width, int height) {
 	_size = Coord(width, height);
 	_snake = Snake();
+	_mode = MODE_PLAY;
+
 	resetMap();
 	generateFood();
 }
@@ -48,6 +54,7 @@ GameState::GameState(const GameState &obj) {
 	this->_map = obj._map;
 	this->_food = obj._food;
 	this->_size = obj._size;
+	this->_mode = obj._mode;
 }
 
 GameState GameState::operator = (const GameState &obj) {
@@ -55,6 +62,7 @@ GameState GameState::operator = (const GameState &obj) {
 	this->_map = obj._map;
 	this->_food = obj._food;
 	this->_size = obj._size;
+	this->_mode = obj._mode;
 
 	return (*this);
 }
@@ -108,20 +116,95 @@ void	GameState::setSnakeDir(char direction) {
 /*
 ** Functions
 */
+
+bool		GameState::runIteration(void) {
+	if (this->_mode != MODE_PLAY)
+		return (false);
+	
+	moveSnake();
+
+	return ((this->_mode == MODE_PLAY) ? true : false);
+}
+
+void		GameState::resetGame(void) {
+	_map.clear();
+
+	*this = GameState();
+}
+
+/*
+** Private Functions
+*/
 void		GameState::resetMap(void) {
 	for (int k = 0; k < this->_size.getY(); k++)
 		for (int l = 0; l < this->_size.getX(); l++)
-			this->_map[l][k] = 0;
+			this->_map[l][k] = MAP_EMPTY;
 }
 
 void		GameState::resetSnake(void) {
-	//
+	this->_snake.resetSnake();
 }
 
-void		GameState::runIteration(void) {
-	//
-}
-
+/* Requires other assets to be loaded into the map first */
 void		GameState::generateFood(void) {
-	//
+	bool	found = false;
+	Coord	pos;
+
+	srand(clock());
+	do {
+		pos = Coord(rand() % this->_size.getX(), rand() % this->_size.getY());
+
+		if (this->_map[pos.getX()][pos.getY()] == MAP_EMPTY) {
+			found = true;
+			this->_food = pos;
+		}
+	} while (!found);
+
+	loadFood();
+}
+
+void		GameState::loadSnake(void) {
+	std::list<Part>	body = this->_snake.getBody();
+	Coord			pos;
+
+	for (std::list<Part>::iterator k = body.begin(); k != body.end(); k++) {
+		pos = k->getPos();
+		this->_map[pos.getX()][pos.getY()] = MAP_BODY;
+	}
+	pos = this->_snake.getHeadPos();
+	this->_map[pos.getX()][pos.getY()] = MAP_HEAD;
+}
+
+void		GameState::loadFood(void) {
+	char	c = this->_map[this->_food.getX()][this->_food.getY()];
+
+	if (c == MAP_EMPTY)
+		this->_map[this->_food.getX()][this->_food.getY()] = MAP_FOOD;
+	else if (c != MAP_FOOD)
+		throw std::runtime_error("Food has been incorrectly generated");
+}
+
+void		GameState::moveSnake(void) {
+	Coord		pos;
+
+	pos = this->_snake.getTailPos();
+	this->_map[pos.getX()][pos.getY()] = MAP_EMPTY;
+	pos = this->_snake.getHeadPos();
+	this->_map[pos.getX()][pos.getY()] = MAP_BODY;
+
+	this->_snake.moveSnake();
+	pos = this->_snake.getHeadPos();
+	if (pos.getX() < 0 || this->_size.getX() >= pos.getX())
+		this->_mode = MODE_END;
+	else if (pos.getY() < 0 || this->_size.getY() >= pos.getY())
+		this->_mode = MODE_END;
+	else if (this->_map[pos.getX()][pos.getY()] == MAP_EMPTY)
+		this->_map[pos.getX()][pos.getY()] = MAP_HEAD;
+	else if (this->_map[pos.getX()][pos.getY()] == MAP_FOOD) {
+		this->_map[pos.getX()][pos.getY()] = MAP_HEAD;
+		this->_snake.eat();
+		generateFood();
+	}
+	else
+		this->_mode = MODE_END;
 }
