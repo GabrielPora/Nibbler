@@ -185,13 +185,12 @@ void		GameState::generateFood(void) {
 	if (!found)
 	{
 		for (int k = 0; k < this->_size.getY(); k++)
-			for (int l = 0; l < this->_size.getX(); l++) {
+			for (int l = 0; l < this->_size.getX(); l++)
 				if (this->_map[l][k] == MAP_EMPTY) {
 					found = true;
 					this->_food = Coord(l, k);
 					goto food_found;
 				}
-			}
 	}
 food_found:
 	if (!found)
