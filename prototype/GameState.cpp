@@ -19,6 +19,7 @@ GameState::GameState(void) {
 	_size = Coord(DEFAULT_HEIGHT, DEFAULT_WIDTH);
 	_snake = Snake();
 	_mode = MODE_PLAY;
+	_score = 0;
 
 	resetMap();
 	generateFood();
@@ -28,6 +29,7 @@ GameState::GameState(Coord size) {
 	_size = size;
 	_snake = Snake();
 	_mode = MODE_PLAY;
+	_score = 0;
 
 	resetMap();
 	generateFood();
@@ -37,6 +39,7 @@ GameState::GameState(int width, int height) {
 	_size = Coord(width, height);
 	_snake = Snake();
 	_mode = MODE_PLAY;
+	_score = 0;
 
 	resetMap();
 	generateFood();
@@ -55,6 +58,7 @@ GameState::GameState(const GameState &obj) {
 	this->_food = obj._food;
 	this->_size = obj._size;
 	this->_mode = obj._mode;
+	this->_score = obj._score;
 }
 
 GameState GameState::operator = (const GameState &obj) {
@@ -63,6 +67,7 @@ GameState GameState::operator = (const GameState &obj) {
 	this->_food = obj._food;
 	this->_size = obj._size;
 	this->_mode = obj._mode;
+	this->_score = obj._score;
 
 	return (*this);
 }
@@ -96,6 +101,10 @@ Direction	GameState::getSnakeDir(void) const {
 
 char		GameState::getMode(void) const {
 	return (this->_mode);
+}
+
+int			GameState::getScore(void) const {
+	return (this->_score);
 }
 
 /*
@@ -161,6 +170,7 @@ void		GameState::resetSnake(void) {
 void		GameState::generateFood(void) {
 	bool	found = false;
 	Coord	pos;
+	int		max_runs = 0;
 
 	srand(clock());
 	do {
@@ -170,9 +180,24 @@ void		GameState::generateFood(void) {
 			found = true;
 			this->_food = pos;
 		}
-	} while (!found);
+	} while (!found && ++max_runs < 100);
 
-	loadFood();
+	if (!found)
+	{
+		for (int k = 0; k < this->_size.getY(); k++)
+			for (int l = 0; l < this->_size.getX(); l++) {
+				if (this->_map[l][k] == MAP_EMPTY) {
+					found = true;
+					this->_food = Coord(l, k);
+					goto food_found;
+				}
+			}
+	}
+food_found:
+	if (!found)
+		this->_mode = MODE_END;
+	else
+		loadFood();
 }
 
 void		GameState::loadSnake(void) {
@@ -215,6 +240,7 @@ void		GameState::moveSnake(void) {
 	else if (this->_map[pos.getX()][pos.getY()] == MAP_FOOD) {
 		this->_map[pos.getX()][pos.getY()] = MAP_HEAD;
 		this->_snake.eat();
+		++this->_score;
 		generateFood();
 	}
 	else

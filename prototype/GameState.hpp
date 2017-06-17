@@ -52,6 +52,7 @@ public:
 	int			getHeight(void) const;
 	Direction	getSnakeDir(void) const;
 	char		getMode(void) const;
+	int			getScore(void) const;
 
 	void		setSize(Coord size);
 	void		setWidth(int width);
@@ -74,6 +75,7 @@ private:
 	MAP			_map;
 	Coord		_food;
 	char		_mode;
+	int			_score;
 
 	Coord		_size;
 
