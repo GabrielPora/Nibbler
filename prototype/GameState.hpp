@@ -51,11 +51,13 @@ public:
 	int			getWidth(void) const;
 	int			getHeight(void) const;
 	Direction	getSnakeDir(void) const;
+	char		getMode(void) const;
 
 	void		setSize(Coord size);
 	void		setWidth(int width);
 	void		setHeight(int height);
 	void		setSnakeDir(char direction);
+	void		setMode(char mode);
 
 	bool		runIteration(void);
 	void		resetGame(void);

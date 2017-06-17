@@ -70,7 +70,6 @@ GameState GameState::operator = (const GameState &obj) {
 /*
 ** Getters
 */
-
 MAP		GameState::getMap(void) const {
 	return (this->_map);
 }
@@ -95,6 +94,10 @@ Direction	GameState::getSnakeDir(void) const {
 	return (this->_snake.getDirection());
 }
 
+char		GameState::getMode(void) const {
+	return (this->_mode);
+}
+
 /*
 ** Setters
 */
@@ -111,6 +114,15 @@ void	GameState::setHeight(int height) {
 }
 void	GameState::setSnakeDir(char direction) {
 	this->_snake.setDirection(direction);
+}
+
+void	GameState::setMode(char mode) {
+	if (this->_mode == MODE_END && (mode == MODE_PLAY || mode == MODE_PAUSE)) {
+		resetGame();
+		this->_mode = mode;
+	}
+	else if (mode == MODE_PLAY || mode == MODE_PAUSE || mode == MODE_END)
+		this->_mode = mode;
 }
 
 /*
