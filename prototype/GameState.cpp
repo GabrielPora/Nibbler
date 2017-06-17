@@ -72,7 +72,7 @@ Snake	GameState::getSnake(void) const {
 }
 
 Coord	GameState::getSize(void) const {
-	return (this->_size)
+	return (this->_size);
 }
 
 int		GameState::getWidth(void) const {
@@ -108,3 +108,20 @@ void	GameState::setSnakeDir(char direction) {
 /*
 ** Functions
 */
+void		GameState::resetMap(void) {
+	for (int k = 0; k < this->_size.getY(); k++)
+		for (int l = 0; l < this->_size.getX(); l++)
+			this->_map[l][k] = 0;
+}
+
+void		GameState::resetSnake(void) {
+	//
+}
+
+void		GameState::runIteration(void) {
+	//
+}
+
+void		GameState::generateFood(void) {
+	//
+}
