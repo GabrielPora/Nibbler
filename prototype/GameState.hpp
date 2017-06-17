@@ -33,7 +33,9 @@
 # define MODE_PLAY		1
 # define MODE_END		2
 
-# define MAP std::map<int, std::map<int, char> >
+# ifndef MAP
+#  define MAP std::map<int, std::map<int, char> >
+# endif
 
 class GameState {
 public:
